@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'points', 'role'
+        'name', 'email', 'password', 'avatar', 'total_points', 'role'
     ];
 
     protected $hidden = [
@@ -27,6 +27,14 @@ class User extends Authenticatable
 
     public function socialaccounts(){
         return $this->hasMany('gexo\SocialAccount');
+    }
+
+    public function exercises(){
+        return $this->hasMany('gexo\Exercises');
+    }
+
+    public function points_fields(){
+        return $this->hasMany('gexo\Points_Fields');
     }
 
 }

@@ -39,18 +39,20 @@ class QuestionController extends Controller
 		$id = Request::input('field_id');
 		$field = Field::find($id);
 		$file = $request->file('image');
-		$imgPath = public_path('uploads/'.str_random(2).$file->getClientOriginalName());
+		
 		
 		if ($file != null) {
 			if ($file->getClientOriginalExtension() != 'jpg' && $file->getClientOriginalExtension() != 'png') {
 				Request::session()->flash('jpg','Imagem necessita ser .jpg ou .png');
 				return redirect()->action('QuestionController@createQuestion');
 			}
+			$imgPath = public_path('uploads/'.str_random(2).$file->getClientOriginalName());
 			$img = Image::make($file->getRealPath());
 			$img->resize(400, 300)->save($imgPath);
+			$question->image = $imgPath;
 		}
 
-		$question->image = $imgPath;
+		
 		$question->field()->associate($field);
 		$question->user()->associate(Auth::user());
 		$question->save();

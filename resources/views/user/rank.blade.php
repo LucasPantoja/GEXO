@@ -1,13 +1,13 @@
 @extends('layout.principal')
 
 @section('content')
-<?php $x= 0?>
+
 <div class="container">
     <div class="row">
-    @while($x<6)
+    @foreach($fields as $field)
         <div class="col-sm-5 col-md-4">
             <div class="panel panel-info" align="center">
-                <div class="panel-heading">TOP 5</div>
+                <div class="panel-heading">{{$field->title}} TOP 5</div>
                 <div class="panel-body" align="center">
                     <table class="table table-striped">
 					  	<tr>
@@ -47,8 +47,7 @@
                 </div>
             </div>
         </div>
-        <?php $x++; ?>
-        @endwhile
+        @endforeach
     </div>
 </div>
 

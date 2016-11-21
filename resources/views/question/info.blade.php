@@ -12,10 +12,12 @@
 			<td style="width: 100px">Enunciado: </td>
 			<td>{{$question->enunciation}}</td>
 		</tr>
+		@if($question->image != null)
 		<tr>
 			<td style="width: 100px">Imagem: </td>
 			<td>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</td>
 		</tr>
+		@endif
 		<tr>
 			<td style="width: 100px">Disciplina: </td>
 			<td>{{$question->field->title}}</td>

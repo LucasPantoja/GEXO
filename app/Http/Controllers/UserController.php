@@ -8,6 +8,7 @@ use Auth;
 use gexo\Question;
 use gexo\Invite;
 use gexo\User;
+use gexo\Field;
 use gexo\SocialAccount;
 use gexo\Http\Requests\InviteRequest;
 
@@ -35,11 +36,13 @@ class UserController extends Controller
     }
 
     public function Rank(){
-        $users = User::orderBy('points', 'desc')->get();
-        return view('user.rank')->with('users', $users);
+        $users = User::orderBy('total_points', 'desc')->get();
+        $fields = Field::orderBy('title', 'asc')->get();
+        return view('user.rank')->with('users', $users)
+                                ->with('fields', $fields);
     }
 
-    public function Pointing(){
+    public function PointingLab(){
         $answers = Request::input('answer');
         $levels = Request::input('question_level');
         $quantity = Session::get('quantity');
@@ -59,7 +62,7 @@ class UserController extends Controller
         Session::put('answers', $answers);
         Session::put('points', $points);
 
-        Auth::user()->update(['points' => $userpoints + $points]);
+        Auth::user()->update(['total_points' => $userpoints + $points]);
 
         return redirect()->action("LabController@Result");
     }

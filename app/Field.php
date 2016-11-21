@@ -15,4 +15,8 @@ class Field extends Model
     public function questions(){
     	return $this->hasMany('gexo\Question');
     }
+
+    public function points_fields(){
+    	return $this->hasMany('gexo\Question');
+    }
 }

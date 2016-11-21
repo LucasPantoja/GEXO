@@ -45,7 +45,7 @@ Route::get('/visitor/{id}', 'UserController@Visitor');
 Route::get('/rank', 'UserController@Rank');
 Route::get('/upgrade', 'UserController@Upgrade');
 
-Route::post('/pointing', 'UserController@Pointing');
+Route::post('/pointinglab', 'UserController@PointingLab');
 Route::post('/upaccount', 'UserController@UpAccount');
 
 
