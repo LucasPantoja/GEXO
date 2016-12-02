@@ -17,6 +17,6 @@ class Field extends Model
     }
 
     public function points_fields(){
-    	return $this->hasMany('gexo\Question');
+    	return $this->hasMany('gexo\Points_Fields');
     }
 }

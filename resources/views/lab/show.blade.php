@@ -4,7 +4,7 @@
 
 <?php $count = 0; ?>
 
-{!! Form::open(['action' => 'UserController@PointingLab']) !!}
+{!! Form::open(['action' => 'UserController@Pointing']) !!}
 @foreach ($questions as $question)
 	<div>
 		<p>{{$question->enunciation}}</p>

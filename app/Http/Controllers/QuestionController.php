@@ -51,7 +51,6 @@ class QuestionController extends Controller
 			$img->resize(400, 300)->save($imgPath);
 			$question->image = $imgPath;
 		}
-
 		
 		$question->field()->associate($field);
 		$question->user()->associate(Auth::user());
@@ -63,6 +62,10 @@ class QuestionController extends Controller
 	}
 
 	public function Show(){
+		if (Auth::user()->role == 0) {
+			Request::session()->flash('Denied','Para ter acesso a esta área é necessário ter uma conta de Instrutor');
+			return redirect()->action('QuestionController@About');	
+		}
 		$questions = Question::all();
 
 		return view('question.show')->with('questions', $questions);
@@ -72,16 +75,18 @@ class QuestionController extends Controller
 		$question = Question::find($id);
 
 		$alternatives = Alternative::where('question_id', $id)->get();
+		$count_alternatives = Alternative::where('question_id', $id)->count();
 		$countA = $alternatives->count();
 		$exist = $alternatives->where('answer', 1)->first();
 		$commentForm = false;
 		if ($countA < 4) {
-			Request::session()->flash('QuestionVal', 'Questao apenas sera valida se possuir ao menos 4 alternativas e 										ao menos uma Correta. Adicione alternativas Abaixo:');
+			Request::session()->flash('QuestionVal', 'Questao apenas sera valida se possuir 4 alternativas 
+											sendo uma Correta. Adicione alternativas !');
 		}
-		if($countA >= 4 && $exist == null){
-			Request::session()->flash('QuestionVal2', 'Questao apenas sera valida se possuir ao menos uma  												   Alternativa Correta. Adicione alternativas Corretas Abaixo:');
+		if($countA == 4 && $exist == null){
+			Request::session()->flash('QuestionVal2', 'Questao apenas sera valida se possuir uma  												   			Alternativa Correta. Adicione alternativa Correta !');
 		}
-		if($countA >= 4 && $exist != null){
+		if($countA == 4 && $exist != null){
 			$commentForm = true;
 		}
 
@@ -89,7 +94,8 @@ class QuestionController extends Controller
 
 		return view('question.info')->with('question', $question)
 									->with('alternatives', $alternatives)->with('countA', $countA)
-									->with('comments', $comments)->with('commentForm', $commentForm);;
+									->with('comments', $comments)->with('commentForm', $commentForm)
+									->with('count_alternatives', $count_alternatives);
 	}
 
 	public function Image($id){

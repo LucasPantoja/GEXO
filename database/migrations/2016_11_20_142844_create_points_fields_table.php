@@ -14,13 +14,14 @@ class CreatePointsFieldsTable extends Migration
     public function up()
     {
         Schema::create('points_fields', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('question_id')->unsigned();
-            $table->integer('points');
+            $table->integer('field_id')->unsigned();
+            $table->integer('points')->default(0);
 
-            $table->foreign('question_id')
+            $table->foreign('field_id')
                   ->references('id')
-                  ->on('questions')
+                  ->on('fields')
                   ->onDelete('cascade');
 
             $table->foreign('user_id')

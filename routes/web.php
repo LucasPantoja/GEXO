@@ -44,6 +44,7 @@ Route::get('/home', 'UserController@Home');
 Route::get('/visitor/{id}', 'UserController@Visitor');
 Route::get('/rank', 'UserController@Rank');
 Route::get('/upgrade', 'UserController@Upgrade');
+Route::get('/points/{user_id}/{field_id}', 'UserController@RetrievingPoints');
 
 Route::post('/pointinglab', 'UserController@PointingLab');
 Route::post('/upaccount', 'UserController@UpAccount');
@@ -57,14 +58,20 @@ Route::get('/lab/show', 'LabController@showLab');
 Route::get('/lab/result', 'LabController@Result');
 Route::get('/lab/printshow', 'LabController@PrintShow');
 Route::get('/lab/printresult', 'LabController@PrintResult');
+Route::get('/lab/guestprint', 'LabController@GuestPrint');
 
 ////////////  SOCIAL ROUTES //////////////
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
+////////////  EXERCISES ROUTES //////////////
 
+Route::get('/exercise/create', 'ExercisesController@createExercise');
+Route::get('/exercise/show/{cod}', 'ExercisesController@showExercise');
 
+Route::post('/exercise/create2', 'ExercisesController@createExercise2');
+Route::post('/exercise', 'ExercisesController@saveExercise');
 
 
 

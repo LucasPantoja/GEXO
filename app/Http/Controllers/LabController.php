@@ -15,7 +15,7 @@ use gexo\Alternative;
 class LabController extends Controller
 {
     public function __construct(){
-        $this->middleware('UserVerify', ['except' => ['PrintShow', 'PrintResult']]);
+        $this->middleware('UserVerify', ['except' => ['PrintShow', 'PrintResult', 'execLab', 'createLab', 'GuestPrint']]);
     }
 
     public function createLab(){
@@ -42,8 +42,13 @@ class LabController extends Controller
     	$randomAlternatives = Alternative::inRandomOrder()->get();
         
     	Session::put('questions', $randomQuestions);
-    	Session::put('alternatives', $randomAlternatives);
+        Session::put('alternatives', $randomAlternatives);
+    	Session::put('field_id', $field_id);
     	Session::put('quantity', Request::input('quantity'));
+
+        if (Auth::guest()) {
+            return redirect()->action("LabController@GuestPrint");
+        }
 
     	return redirect()->action("LabController@showLab");
     }
@@ -130,6 +135,10 @@ class LabController extends Controller
 
         //forçar o download
         return response()->download($file, 'gexoResult.pdf', $headers);
+    }
+
+    public function GuestPrint(){
+        return view('lab.guestPrint');
     }
 
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class InvitesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(InvitesTableSeeder::class);
+        DB::table('invites')->insert([
+        	'key' => '098765432109876543210987654321'
+        	]);
     }
 }

@@ -4,7 +4,7 @@ namespace gexo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Socialite;
-use gexo\SocialAccountService;
+use gexo\Providers\SocialAccountService;
 
 class SocialAuthController extends Controller
 {

@@ -14,10 +14,12 @@ class CreateExercisesTable extends Migration
     public function up()
     {
         Schema::create('exercises', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('question_id')->unsigned();
-            $table->string('id');
             $table->string('title');
+            $table->string('cod');
+            $table->timestamps();
 
             $table->foreign('question_id')
                   ->references('id')

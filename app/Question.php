@@ -27,4 +27,8 @@ class Question extends Model
     public function user(){
     	return $this->belongsTo('gexo\User');
     }
+
+    public function exercise(){
+        return $this->belongsTo('gexo\Exercises');
+    }
 }

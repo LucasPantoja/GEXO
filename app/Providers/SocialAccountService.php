@@ -1,9 +1,10 @@
 <?php
 
-namespace gexo;
+namespace gexo\Providers;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Auth;
+use gexo\SocialAccount;
 
 class SocialAccountService
 {
