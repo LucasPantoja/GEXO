@@ -15,6 +15,7 @@
 	<table class="table table-bordered table-striped">
 		@foreach ($questions as $question)
 			<tr>
+				<td width="50">{{$question->field->title}}</td>
 				<td>{{$question->enunciation}}</td>
 				<td style="width: 20px;">
 					@if($question->valid)
@@ -24,8 +25,8 @@
 					@endif
 				</td>
 				<td style="width: 20px;">
-					{!! Html::decode(Html::linkAction('QuestionController@Info', 
-					'<i class="glyphicon glyphicon-search"></i>', $question->id)) !!}
+					<a target="_blank" href="{{action('QuestionController@Info', $question->id)}}">
+					<i class="glyphicon glyphicon-search"></i></a>
 				</td>
 			</tr>
 		@endforeach

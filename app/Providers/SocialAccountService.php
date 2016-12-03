@@ -5,6 +5,7 @@ namespace gexo\Providers;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Auth;
 use gexo\SocialAccount;
+use gexo\User;
 
 class SocialAccountService
 {

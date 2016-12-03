@@ -1,0 +1,21 @@
+language: php
+sudo: required
+php:
+  - '5.5'
+  - '5.6'
+  - '7.0'
+  - nightly
+
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --prefer-source --no-interaction --dev
+
+#notifications:
+#    slack: chanel:token
+
+addons:
+    code_climate:
+        repo_token: c70199b1102996ce7de86c5ce4c89a4f308ca496ebb266deb21f41e7f4be75cb
+
+script:
+  - "phpunit --process-isolation --coverage-clover build/logs/clover.xml"

@@ -35,10 +35,10 @@
 
 	<li>
 		Pontos: 
-		@if(Auth::user()->points == null)
+		@if(Auth::user()->total_points == null)
 			Voce Ainda nao possui Pontos
 		@else
-			{{Auth::user()->points}}
+			{{Auth::user()->total_points}}
 		@endif
 	</li>
 
@@ -55,27 +55,24 @@
 
 	</br>
 	
-	<?php $x = 4; ?>
-	<?php $t = 0; ?>
+	
 	<li>Aptidões :</li>
 	<table class="table">
-	@while($t<3)
-	<?php $result = $x*100/1000; ?>
+	@foreach($aptidoes as $aptidao)
+	<?php $result = ($aptidao->points * 100)/Auth::user()->total_points; ?>
 		<tr>
-			<td align="center" valign="middle">Java</td>
+			<td align="center" valign="middle" width="50">{{$aptidao->field->title}}</td>
 			<td align="center" valign="middle">
 				<div class="progress"> 
 	  				<div class="progress-bar" role="progressbar" 
-	  				aria-valuenow="{{$x}}" aria-valuemin="0" aria-valuemax="1000" style="width: {{$result}}%">
-			    		{{$result}}% Complete
+	  				aria-valuenow="{{$aptidao->points}}" aria-valuemin="0" aria-valuemax="{{Auth::user()->total_points}}" 
+	  				style="width: {{$result}}%">
+			    		{{$result}}% 
 				  	</div>
 				</div>
 			</td>
-			<td align="center" valign="center">{{$x}}/1000</td>
 		</tr>
-		<?php $t++; 
-		$x = $x*$x; ?>
-	@endwhile
+	@endforeach
 	</table>
 
 </br>
@@ -86,9 +83,11 @@
 	<tr><strong>Questoes publicadas: </strong></tr>
 	@foreach ($questions as $question)
 		<tr>
+			<td width="50">{{$question->field->title}}</td>
 			<td>{{$question->enunciation}}</td>
 			<td style="width: 50px;">
-				<a href="{{action('QuestionController@Info', $question->id)}}" class="btn btn-info btn-xs">Info</a>
+				<a target="_blank" href="{{action('QuestionController@Info', $question->id)}}">
+				<i class="glyphicon glyphicon-search"></i></a>
 			</td>
 		</tr>
 	@endforeach

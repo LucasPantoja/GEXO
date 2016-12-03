@@ -12,10 +12,12 @@
 			<td style="width: 100px">Enunciado: </td>
 			<td>{{$question->enunciation}}</td>
 		</tr>
-		<tr>
-			<td style="width: 100px">Imagem: </td>
-			<td>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</td>
-		</tr>
+		@if($question->image != null)		
+  		<tr>
+  			<td style="width: 100px">Imagem: </td>
+  			<td>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</td>
+  		</tr>
+ 		@endif
 		<tr>
 			<td style="width: 100px">Disciplina: </td>
 			<td>{{$question->field->title}}</td>
@@ -33,7 +35,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="width: 100px">Autor: </td>
+			<td style="width: 100px">Instrutor: </td>
 			<td>{!! Html::linkAction('UserController@Visitor', $question->user->name, $question->user->id) !!}</td>
 			</tr>
 		<tr>

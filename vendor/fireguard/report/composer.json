@@ -1,0 +1,34 @@
+{
+  "name": "fireguard/report",
+  "description": "Pacote para gestão de relatórios da Fireguard",
+  "keywords": [ "php", "report", "relatório", "pdf", "html", "laravel"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ronaldo Meneguite",
+      "email": "ronaldo@fireguard.com.br"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "jakoch/phantomjs-installer": "2.1.1-p06",
+    "symfony/process": ">=2.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "illuminate/support": "~5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fireguard\\Report\\": "src/Report"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "PhantomInstaller\\Installer::installPhantomJS"
+    ],
+    "post-update-cmd": [
+      "PhantomInstaller\\Installer::installPhantomJS"
+    ]
+  }
+}

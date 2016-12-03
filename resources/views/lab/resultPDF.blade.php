@@ -6,8 +6,12 @@
 @foreach ($questions as $question)
 	<div align="left">
 		<p><strong>{{$number}}) {{$question->enunciation}}</strong></p>
-		<p><img src="{{$question->image}}" width="150" height="150" border="0" /></p>
 	</div>
+	@if($question->image != null)
+		<div align="center">
+			<p><img src="{{$question->image}}" width="150" height="150" border="0" /></p>
+		</div>
+	@endif
 	<table class="table table-bordered">
 		
 			@foreach($alternatives as $alternative)

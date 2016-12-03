@@ -4,15 +4,16 @@
 
 <?php $count = 0; ?>
 
-{!! Form::open(['action' => 'UserController@Pointing']) !!}
+{!! Form::open(['action' => 'UserController@PointingLab']) !!}
 @foreach ($questions as $question)
 	<div>
 		<p>{{$question->enunciation}}</p>
-		<p>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</p>
+		@if($question->image != null)		
+  			<p>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</p>
+ 		@endif
 		<div align="right">
 			Provedor: <a href="">{{$question->user->name}}</a>
 			</br>
-			<small>Instituto:</small>
 		</div>
 
 		{!! Form::hidden('question_level[]', $question->level) !!}

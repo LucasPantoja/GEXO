@@ -17,7 +17,9 @@
 				<a href="{{action('QuestionController@Info', $question->id)}}">{{$question->enunciation}}</a>
 			</p>
 		@endif
-		<p>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</p>
+		@if($question->image != null)		
+  			<p>{!! Html::image(action('QuestionController@Image', $question->id)) !!}</p>
+ 		@endif
 	</div>
 	<table class="table table-bordered">
 		

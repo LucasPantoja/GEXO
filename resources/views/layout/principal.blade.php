@@ -40,8 +40,6 @@
 								{{Auth::user()->name}}
 							<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-							<li><i class="glyphicon glyphicon-envelope"></i> {{Auth::user()->email}}</li>
-							<li role="separator" class="divider"></li>
 							<li>
 								<a href="{{action('UserController@Home')}}">
 									<i class="glyphicon glyphicon-home"></i> Home
