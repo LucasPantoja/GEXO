@@ -138,7 +138,7 @@ class LabController extends Controller
     }
 
     public function GuestPrint(){
-        return view('lab.guestPrint');
+        return view('lab.guestPDF');
     }
 
 }

@@ -59,7 +59,7 @@
 	<li>Aptidões :</li>
 	<table class="table">
 	@foreach($aptidoes as $aptidao)
-	<?php $result = ($aptidao->points * 100)/Auth::user()->total_points; ?>
+	<?php $result = intval(($aptidao->points * 100)/Auth::user()->total_points); ?>
 		<tr>
 			<td align="center" valign="middle" width="50">{{$aptidao->field->title}}</td>
 			<td align="center" valign="middle">
@@ -77,6 +77,31 @@
 
 </br>
 </br>
+</br>
+
+<table = class="table">
+	<tr>
+		<strong>Exercícios publicados: </strong> 
+		<a href="{{{action('ExercisesController@createExercise')}}}">
+			<button class="btn btn-info btn-xs">Formular Exercicio</button>
+		</a>
+	</tr>
+	<?php $cod = null;?>
+	@foreach ($exercises as $exercise)
+	@if($cod != $exercise->cod)
+		<tr>
+			<td>{{$exercise->title}}</td>
+			<td width="50px">{{$exercise->cod}}</td>
+			<td style="width: 50px;">
+				<a target="_blank" href="{{action('ExercisesController@showExercise', $exercise->cod)}}">
+				<i class="glyphicon glyphicon-search"></i></a>
+			</td>
+		</tr>
+		<?php $cod = $exercise->cod; ?>
+	@endif
+	@endforeach
+</table>
+
 </br>
 
 <table = class="table">

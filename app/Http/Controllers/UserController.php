@@ -119,12 +119,5 @@ class UserController extends Controller
         
     }
 
-    public function RetrievingPoints($user_id, $field_id){
-        $points_fields = Points_Fields::where('user_id', $user_id)
-                                        ->where('field_id', $field_id)->get();
-        echo $points_fields->points;
-        return null;
-    }
-
 
 }

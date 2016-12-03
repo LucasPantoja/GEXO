@@ -3,7 +3,9 @@
 @section('content')
 
 <div align="center">
+@if(Auth::check())
 	<h3>Laboratorio</h3>
+@endif
 	<b>Gere sua lista de exercicios</b>
 </div>
 

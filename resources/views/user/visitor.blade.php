@@ -32,7 +32,7 @@
 	<li>Aptidões :</li>
 	<table class="table">
 	@foreach($aptidoes as $aptidao)
-	<?php $result = ($aptidao->points * 100)/$visitor->total_points; ?>
+	<?php $result = intval(($aptidao->points * 100)/$visitor->total_points); ?>
 		<tr>
 			<td align="center" valign="middle" width="50">{{$aptidao->field->title}}</td>
 			<td align="center" valign="middle">
