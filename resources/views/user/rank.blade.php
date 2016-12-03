@@ -1,13 +1,14 @@
 @extends('layout.principal')
 
 @section('content')
-<?php $x= 0?>
+
 <div class="container">
     <div class="row">
-    @while($x<6)
+    @foreach($fields as $field)
+    @if(in_array($field->id, $array))
         <div class="col-sm-5 col-md-4">
             <div class="panel panel-info" align="center">
-                <div class="panel-heading">TOP 5</div>
+                <div class="panel-heading">{{$field->title}} TOP 5</div>
                 <div class="panel-body" align="center">
                     <table class="table table-striped">
 					  	<tr>
@@ -40,15 +41,21 @@
 								{{$user->name}}
 					  			</a>
 					  		</td>
-					  		<td>{{$user->points}}</td>
+					  		<td>
+					  		@foreach($points_fields as $point_field)
+					  		@if($user->id == $point_field->user_id && $field->id == $point_field->field_id)
+					  			{{$point_field->points}}
+					  		@endif
+					  		@endforeach
+					  		</td>
 					  	</tr>
 					  	@endforeach
 					</table>
                 </div>
             </div>
         </div>
-        <?php $x++; ?>
-        @endwhile
+        @endif
+        @endforeach
     </div>
 </div>
 

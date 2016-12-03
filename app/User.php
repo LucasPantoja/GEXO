@@ -33,7 +33,7 @@ class User extends Authenticatable
         return $this->hasMany('gexo\Exercises');
     }
 
-    public function points_fields(){
+    public function pfs(){
         return $this->hasMany('gexo\Points_Fields');
     }
 
